@@ -14,7 +14,7 @@ jobs:
        run: echo "This workflow run succesfully for this particular action"
 
      - name: Simulating error
-       run: echo "error taking place"; exit 1
+       run: echo "error taking place"
      
       
     
