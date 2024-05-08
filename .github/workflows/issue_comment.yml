@@ -27,4 +27,26 @@ jobs:
 
             [1]: https://github.com/peter-evans/create-or-update-comment
           reactions: '+1'
+
+  comment-with-api:
+     permissions: write-all
+     runs-on: ubuntu-latest
+     steps: 
+       - name: Create Comment with API
+         run: |
+          gh api -X POST \
+          http://api.github.com/repo/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUES_NUMBER}/comments \
+          -f body ='
+           Comment but from the API call not Action
+           '
+         env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           ORGANIZATION: ${{ github.event.user.login }} 
+           REPOSITORY: ${{ github.event.repository.name }}
+           ISSUES_NUMBER: ${{ github.event.issue.number }} 
+           
+          
+     
+     
+     
       
